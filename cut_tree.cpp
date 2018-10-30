@@ -1,4 +1,4 @@
-int f(int *arr, int length)
+int f2(int *arr, int length)
 {
 	int decrease_count = 0, key_index = -1;
 	for (int i = 0; i < length - 1; ++i)
@@ -6,7 +6,7 @@ int f(int *arr, int length)
 		if (arr[i] > arr[i + 1])
 		{
 			decrease_count++;
-			if (decrease_count >= 2)
+			if (decrease_count > 1)
 			{
 				return 0;
 			}
@@ -23,9 +23,17 @@ int f(int *arr, int length)
 	}
 	else
 	{
-		if (arr[key_index - 1] > arr[key_index + 1])
+		if (key_index == 0)
 		{
-			if (arr[key_index + 2] < arr[key_index])
+			return 1;
+		}
+		else if (arr[key_index - 1] > arr[key_index + 1])
+		{
+			if (key_index == length - 2)
+			{
+				return 1;
+			}
+			else if (arr[key_index + 2] < arr[key_index])
 			{
 				return 0;
 			}
@@ -36,7 +44,11 @@ int f(int *arr, int length)
 		}
 		else
 		{
-			if (arr[key_index + 2] >= arr[key_index])
+			if (key_index == length - 2)
+			{
+				return 2;
+			}
+			else if (arr[key_index + 2] >= arr[key_index])
 			{
 				return 2;
 			}
